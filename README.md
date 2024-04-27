@@ -17,6 +17,7 @@
 - Axios
 - Redux
 - Fontawesome icons
+- Toastify
 
 ### How to run application
 
