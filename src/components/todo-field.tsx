@@ -44,7 +44,7 @@ export const TodoField: FC<Props> = ({ todo }) => {
             dispatch(editTodo({ ...todo, completed: !todo.completed }))
           }
           type="checkbox"
-          className="w-4 h-4 accent-orange-600"
+          className="w-4 h-4 accent-orange-600 cursor-pointer"
         />
         {editMode ? (
           <>
@@ -68,7 +68,7 @@ export const TodoField: FC<Props> = ({ todo }) => {
       <div className="flex gap-5">
         <button
           onClick={() => setEditMode(true)}
-          className="dark:text-orange-500 text-orange-400 hover:text-orange-500 text-xl"
+          className="dark:text-orange-500 text-orange-400 dark:hover:text-orange-600 hover:text-orange-500 text-xl"
           aria-label={`Edit todo ${todo.title}`}
         >
           <FontAwesomeIcon icon={faPenToSquare} />
