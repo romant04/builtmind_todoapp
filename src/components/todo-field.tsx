@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import { Todo } from "../types/todo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,24 +17,22 @@ export const TodoField: FC<Props> = ({ todo }) => {
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState<boolean>(false);
   const [title, setTitle] = useState<string>(todo.title);
-  const [completed, setCompleted] = useState<boolean>(todo.completed);
 
-  const handleTodoDelete = () => {
+  const handleTodoDelete = useCallback(() => {
     dispatch(removeTodo(todo.id));
-  };
+  }, []);
 
-  const handleTodoEdit = () => {
+  const handleTodoEdit = useCallback(() => {
     if (title.trim() === "") {
       alert("Title cannot be empty");
       return;
     }
 
     setEditMode(false);
-    console.log(title, completed);
     dispatch(
       editTodo({ id: todo.id, title: title, completed: todo.completed })
     );
-  };
+  }, [title]);
 
   return (
     <div className="bg-purple-900 py-3 px-5 flex flex-col gap-y-5 md:flex-row justify-between">

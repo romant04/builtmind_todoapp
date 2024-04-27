@@ -1,9 +1,13 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { Todo } from "../types/todo";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/store";
-import { resetTodos, setMultipleTodos } from "../app/reducers/todo-slice";
+import {
+  addTodo,
+  resetTodos,
+  setMultipleTodos,
+} from "../app/reducers/todo-slice";
 import { TodoField } from "../components/todo-field";
 
 export const Home: FC = () => {
@@ -14,7 +18,7 @@ export const Home: FC = () => {
 
   const savedTodos = useSelector((state: RootState) => state.todos.todos);
 
-  const handleTodoAdd = () => {
+  const handleTodoAdd = useCallback(() => {
     setTodos((prev) => [
       ...prev,
       {
@@ -23,8 +27,15 @@ export const Home: FC = () => {
         completed: false,
       },
     ]);
+    dispatch(
+      addTodo({
+        id: todos.length + 100,
+        title: todoTitle,
+        completed: false,
+      })
+    );
     setTodoTitle("");
-  };
+  }, [todos, todoTitle]);
 
   useEffect(() => {
     if (!loading) {
