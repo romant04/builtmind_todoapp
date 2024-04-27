@@ -61,12 +61,7 @@ export const Home: FC = () => {
       setLoading(false);
     };
 
-    if (savedTodos.length === 0) {
-      void fetchData();
-    } else {
-      setTodos((prev) => savedTodos);
-      setLoading(false);
-    }
+    void fetchData();
 
     return () => {
       setTodos([]);
