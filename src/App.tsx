@@ -5,6 +5,7 @@ import { Navbar } from "./components/navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./app/store";
 import { setTheme } from "./app/reducers/theme-slice";
+import { ToastContainer } from "react-toastify";
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export const App: FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
+        <ToastContainer position="top-right" theme={theme} />
       </div>
     </BrowserRouter>
   );

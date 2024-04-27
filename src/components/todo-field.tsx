@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { editTodo, removeTodo } from "../app/reducers/todo-slice";
+import { toast } from "react-toastify";
 
 interface Props {
   todo: Todo;
@@ -24,7 +25,7 @@ export const TodoField: FC<Props> = ({ todo }) => {
 
   const handleTodoEdit = useCallback(() => {
     if (title.trim() === "") {
-      alert("Title cannot be empty");
+      toast.error("Title cannot be empty");
       return;
     }
 
@@ -35,7 +36,7 @@ export const TodoField: FC<Props> = ({ todo }) => {
   }, [title]);
 
   return (
-    <div className="dark:bg-purple-700 bg-purple-800 py-3 px-5 flex flex-col gap-y-5 md:flex-row justify-between rounded-sm">
+    <div className="dark:bg-purple-700 bg-purple-800 py-3 px-5 flex flex-col gap-5 md:flex-row justify-between rounded-sm">
       <div className="flex items-center gap-2">
         <input
           checked={todo.completed}
@@ -54,28 +55,32 @@ export const TodoField: FC<Props> = ({ todo }) => {
               onChange={(e) => setTitle(e.target.value)}
             />
             <FontAwesomeIcon
+              aria-label={`Confirm edit of todo ${todo.title}`}
               onClick={handleTodoEdit}
               className="text-green-400 text-lg cursor-pointer"
               icon={faCheck}
             />
           </>
         ) : (
-          <h3 className="text-white text-lg">
-            {todo.title}
-            <FontAwesomeIcon
-              onClick={() => setEditMode(true)}
-              className="ml-2 dark:text-orange-500 text-orange-400 hover:text-orange-500 cursor-pointer"
-              icon={faPenToSquare}
-            />
-          </h3>
+          <h3 className="text-white text-lg">{todo.title}</h3>
         )}
       </div>
-      <button
-        onClick={handleTodoDelete}
-        className="bg-red-600 text-white px-8 rounded-sm hover:bg-red-700"
-      >
-        <FontAwesomeIcon icon={faTrash} />
-      </button>
+      <div className="flex gap-5">
+        <button
+          onClick={() => setEditMode(true)}
+          className="dark:text-orange-500 text-orange-400 hover:text-orange-500 text-xl"
+          aria-label={`Edit todo ${todo.title}`}
+        >
+          <FontAwesomeIcon icon={faPenToSquare} />
+        </button>
+        <button
+          onClick={handleTodoDelete}
+          className="text-red-600 hover:text-red-700 text-xl"
+          aria-label={`Delete todo ${todo.title}`}
+        >
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
+      </div>
     </div>
   );
 };

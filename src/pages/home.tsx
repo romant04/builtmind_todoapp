@@ -9,6 +9,7 @@ import {
   setMultipleTodos,
 } from "../app/reducers/todo-slice";
 import { TodoField } from "../components/todo-field";
+import { toast } from "react-toastify";
 
 export const Home: FC = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,11 @@ export const Home: FC = () => {
   const savedTodos = useSelector((state: RootState) => state.todos.todos);
 
   const handleTodoAdd = useCallback(() => {
+    if (!todoTitle) {
+      toast.error("Title cannot be empty");
+      return;
+    }
+
     setTodos((prev) => [
       ...prev,
       {
@@ -35,6 +41,8 @@ export const Home: FC = () => {
       })
     );
     setTodoTitle("");
+
+    toast.success("Todo added successfully");
   }, [todos, todoTitle]);
 
   useEffect(() => {
