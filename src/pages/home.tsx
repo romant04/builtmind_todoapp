@@ -70,12 +70,12 @@ export const Home: FC = () => {
   return (
     <div className="w-[max(75%,320px)] mx-auto mt-10">
       <div className="mt-2 flex flex-col gap-y-2 md:flex-row justify-between items-center">
-        <h1 className="text-3xl font-bold">Todos</h1>
+        <h1 className="text-3xl font-bold dark:text-white">Todos</h1>
         <div className="flex gap-1">
           <input
             value={todoTitle}
             onChange={(e) => setTodoTitle(e.target.value)}
-            className="border-2 border-gray-500 px-2 p-1 rounded-sm"
+            className="border-2 dark:border-gray-300 dark:bg-gray-600 dark:text-white border-gray-500 px-2 p-1 rounded-sm"
             type="text"
             placeholder="Todo title"
           />

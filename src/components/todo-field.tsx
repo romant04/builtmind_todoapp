@@ -35,7 +35,7 @@ export const TodoField: FC<Props> = ({ todo }) => {
   }, [title]);
 
   return (
-    <div className="bg-purple-900 py-3 px-5 flex flex-col gap-y-5 md:flex-row justify-between">
+    <div className="dark:bg-purple-700 bg-purple-800 py-3 px-5 flex flex-col gap-y-5 md:flex-row justify-between rounded-sm">
       <div className="flex items-center gap-2">
         <input
           checked={todo.completed}
@@ -49,7 +49,7 @@ export const TodoField: FC<Props> = ({ todo }) => {
           <>
             <input
               type="text"
-              className="bg-purple-800 text-white px-2 py-1 rounded-sm"
+              className="dark:bg-purple-600 bg-purple-700 text-white px-2 py-1 rounded-sm"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -60,11 +60,11 @@ export const TodoField: FC<Props> = ({ todo }) => {
             />
           </>
         ) : (
-          <h3 className="text-white text-xl">
+          <h3 className="text-white text-lg">
             {todo.title}
             <FontAwesomeIcon
               onClick={() => setEditMode(true)}
-              className="ml-2 text-orange-400 hover:text-orange-500 cursor-pointer"
+              className="ml-2 dark:text-orange-500 text-orange-400 hover:text-orange-500 cursor-pointer"
               icon={faPenToSquare}
             />
           </h3>

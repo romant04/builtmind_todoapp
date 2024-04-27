@@ -2,11 +2,11 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { Todo } from "../../types/todo";
 
-export interface CounterState {
+export interface TodoState {
   todos: Todo[];
 }
 
-const initialState: CounterState = {
+const initialState: TodoState = {
   todos: [],
 };
 
