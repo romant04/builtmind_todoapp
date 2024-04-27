@@ -1,5 +1,3 @@
-### `npm test`
-
 # Assignment React project
 
 ### Start of coding
